@@ -1,5 +1,8 @@
 const gulp = require("gulp");
 const sass = require("gulp-sass")(require("sass"));
+const cleanCss = require("gulp-clean-css");
+const concatCss = require("gulp-concat-css");
+const rename = require("gulp-rename");
 
 function html(cb) {
     gulp.src("src/**/*.html")
@@ -16,6 +19,9 @@ function script(cb) {
 function styles(cb) {
     gulp.src("src/sass/**/*.scss")
         .pipe(sass().on("error", sass.logError))
+        .pipe(concatCss("style.css", { rebaseUrls: false }))
+        .pipe(cleanCss())
+        .pipe(rename({ basename: "style", suffix: ".min" }))
         .pipe(gulp.dest("dest/"));
     cb();
 }

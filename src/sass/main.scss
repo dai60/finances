@@ -1,3 +1,6 @@
+$border: 1px solid gray;
+$main-padding: 1rem;
+
 * {
     box-sizing: border-box;
 }
@@ -21,13 +24,13 @@ main {
     margin: 4rem auto;
 
     h1 {
-        padding: 1rem;
-        border-bottom: 1px solid gray;
+        padding: $main-padding;
+        border-bottom: $border;
     }
 
     form {
-        padding: 1rem;
-        border-bottom: 1px solid gray;
+        padding: $main-padding;
+        border-bottom: $border;
         gap: 0.5em;
 
         display: flex;
@@ -39,12 +42,13 @@ main {
 
         #transaction {
             flex: 1;
+            min-width: 3ch;
         }
     }
 
     .balance {
-        padding: 1rem;
-        border-bottom: 1px solid gray;
+        padding: $main-padding;
+        border-bottom: $border;
         background-color: lightgray;
 
         h2, p {
@@ -57,12 +61,12 @@ main {
         flex-direction: column-reverse;
 
         & > div {
-            padding: 1rem;
-            border-bottom: 1px solid gray;
+            padding: $main-padding;
+            border-bottom: $border;
         }
 
         .id, .date {
-            font-size: 0.75rem;
+            font-size: 0.75em;
         }
     }
 }
