@@ -11,6 +11,12 @@ document.getElementById("transaction-form").addEventListener("submit", function 
     event.target.reset();
 });
 
+document.getElementById("sort-transactions").addEventListener("click", function (event) {
+    event.preventDefault();
+    document.querySelector(".sort > svg").classList.toggle("ascending");
+    document.querySelector(".transactions").classList.toggle("ascending");
+})
+
 function addTransaction(amount) {
     const id = transactions.length + 1;
     const date = new Date();
@@ -61,7 +67,7 @@ function updateSpan(id, amount) {
 }
 
 function updateTransactions() {
-    const list = document.querySelector(".transaction-list");
+    const list = document.querySelector(".transactions");
     const elements = [];
 
     for (const transaction of transactions) {
