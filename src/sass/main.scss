@@ -14,7 +14,8 @@ h1, h2, p {
 
 main {
     background-color: white;
-    border-radius: 0.25rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
 
     max-width: 600px;
     margin: 4rem auto;
@@ -52,6 +53,8 @@ main {
     }
 
     .transaction-list {
+        display: flex;
+        flex-direction: column-reverse;
 
         & > div {
             padding: 1rem;
@@ -62,6 +65,10 @@ main {
             font-size: 0.75rem;
         }
     }
+}
+
+.neutral {
+    color: darkslategray;
 }
 
 .positive {

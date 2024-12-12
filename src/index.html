@@ -14,13 +14,13 @@
         <h1>Finance calculator</h1>
         <form id="transaction-form">
             <label for="transaction">Transaction:</label>
-            <input id="transaction" name="transaction" type="number" step="0.01">
+            <input id="transaction" name="transaction" type="number" step="0.01" placeholder="0">
             <input type="submit" value="Submit">
         </form>
         <div class="balance">
-            <h2>Balance: <span id="current-balance"></span></h2>
-            <p>Income: <span id="income"></span></p>
-            <p>Expenses: <span id="expenses"></span></p>
+            <h2>Balance: <span class="neutral" id="current-balance"></span></h2>
+            <p>Income: <span class="neutral" id="income"></span></p>
+            <p>Expenses: <span class="neutral" id="expenses"></span></p>
         </div>
         <div class="transaction-list"></div>
     </main>

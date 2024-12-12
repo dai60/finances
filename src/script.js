@@ -6,7 +6,7 @@ document.getElementById("transaction-form").addEventListener("submit", function 
     const value = Number(input.value);
 
     addTransaction(value);
-    updateTransactions();
+    updateHtml();
 
     event.target.reset();
 });
@@ -17,15 +17,65 @@ function addTransaction(amount) {
     transactions.push({ id, amount, date });
 }
 
+function calculateBalance() {
+    let current = 0;
+    let income = 0;
+    let expenses = 0;
+    for (const transaction of transactions) {
+        const amount = transaction.amount;
+        current += amount;
+        if (amount >= 0) {
+            income += amount;
+        }
+        else {
+            expenses += amount;
+        }
+    }
+    return { current, income, expenses };
+}
+
+function updateHtml() {
+    updateBalance(calculateBalance());
+    updateTransactions();
+}
+
+function updateBalance(balance) {
+    updateSpan("current-balance", balance.current);
+    updateSpan("income", balance.income);
+    updateSpan("expenses", balance.expenses);
+}
+
+function updateSpan(id, amount) {
+    const span = document.getElementById(id);
+    span.classList.remove("neutral", "positive", "negative");
+    if (amount > 0) {
+        span.classList.add("positive");
+    }
+    else if (amount === 0) {
+        span.classList.add("neutral");
+    }
+    else {
+        span.classList.add("negative");
+    }
+    span.textContent = `${amount.toFixed(2)} $`;
+}
+
 function updateTransactions() {
     const list = document.querySelector(".transaction-list");
     const elements = [];
 
     for (const transaction of transactions) {
-        const color = transaction.amount >= 0 ? "positive" : "negative";
+        let color = "neutral";
+        if (transaction.amount > 0) {
+            color = "positive";
+        }
+        else if (transaction.amount < 0) {
+            color = "negative";
+        }
+
         const children = [
             `<p class="id">ID: ${transaction.id}</p>`,
-            `<h2 class="${color}">${transaction.amount} $</h2>`,
+            `<h2 class="${color}">${transaction.amount.toFixed(2)} $</h2>`,
             `<p class="date">${transaction.date.toLocaleString()}</p>`
         ];
         const div = `<div>${children.join("\n")}</div>`;
@@ -34,3 +84,5 @@ function updateTransactions() {
 
     list.innerHTML = elements.join("\n");
 }
+
+updateHtml();
