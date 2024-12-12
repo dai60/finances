@@ -3,22 +3,35 @@
 .transaction-container {
     position: relative;
 
-    .sort {
+    .transaction-buttons {
         position: absolute;
         top: 0.5rem;
         right: 0.5rem;
 
-        svg {
+        a {
+            display: inline-block;
+            line-height: 1ch;
+
+            &.hidden {
+                display: none;
+            }
+
             fill: gray;
-            transition: all 0.2s ease;
-        }
 
-        svg:hover {
-            fill: black;
-        }
+            svg {
+                transition: all 0.2s ease;
+            }
 
-        svg.ascending {
-            transform: scaleY(-100%);
+            &:hover, &:focus {
+                fill: black;
+                &.clear {
+                    fill: red;
+                }
+            }
+
+            &.sort > svg.ascending {
+                transform: scaleY(-100%);
+            }
         }
     }
 

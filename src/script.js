@@ -17,6 +17,12 @@ document.getElementById("sort-transactions").addEventListener("click", function 
     document.querySelector(".transactions").classList.toggle("ascending");
 })
 
+document.getElementById("clear-transactions").addEventListener("click", function (event) {
+    event.preventDefault();
+    transactions.length = 0;
+    updateHtml();
+})
+
 function addTransaction(amount) {
     const id = transactions.length + 1;
     const date = new Date();
@@ -43,6 +49,15 @@ function calculateBalance() {
 function updateHtml() {
     updateBalance(calculateBalance());
     updateTransactions();
+
+    document.querySelectorAll(".transaction-buttons > a").forEach(function (element) {
+        if (transactions.length === 0) {
+            element.classList.add("hidden");
+        }
+        else {
+            element.classList.remove("hidden");
+        }
+    });
 }
 
 function updateBalance(balance) {
