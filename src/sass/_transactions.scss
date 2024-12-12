@@ -1,0 +1,15 @@
+@use "variables" as *;
+
+.transaction-list {
+    display: flex;
+    flex-direction: column-reverse;
+
+    & > div {
+        padding: $main-padding;
+        border-bottom: $border;
+    }
+
+    .id, .date {
+        font-size: 0.75em;
+    }
+}
