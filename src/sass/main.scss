@@ -50,4 +50,24 @@ main {
             margin-bottom: 0.5em;
         }
     }
+
+    .transaction-list {
+
+        & > div {
+            padding: 1rem;
+            border-bottom: 1px solid gray;
+        }
+
+        .id, .date {
+            font-size: 0.75rem;
+        }
+    }
+}
+
+.positive {
+    color: green;
+}
+
+.negative {
+    color: red;
 }
